@@ -1,20 +1,80 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+    final screenSize = MediaQuery.of(context).size;
+    return MaterialApp(
+        home: Scaffold(
+            body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+          Center(
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                SizedBox(
+                  width: screenSize.width / 2,
+                  height: screenSize.width / 2,
+                  child: Placeholder(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 16),
+                      child: SizedBox(
+                        width: screenSize.width / 4,
+                        child: Text(
+                          '** ℃',
+                          style: TextStyle(
+                            color: Colors.blue,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 16),
+                      child: SizedBox(
+                        width: screenSize.width / 4,
+                        child: Text(
+                          '** ℃',
+                          style: TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ])),
+          const SizedBox(height: 80),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: screenSize.width / 4,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text('Close'),
+                ),
+              ),
+              SizedBox(
+                width: screenSize.width / 4,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text('Reload'),
+                ),
+              ),
+            ],
+          ),
+        ])));
   }
 }
