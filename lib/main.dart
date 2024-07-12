@@ -15,15 +15,15 @@ class MainApp extends StatelessWidget {
             body: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-          Center(
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+          Expanded(child: Container()),
+          Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 SizedBox(
                   width: screenSize.width / 2,
                   height: screenSize.width / 2,
-                  child: Placeholder(),
+                  child: const Placeholder(),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -54,27 +54,30 @@ class MainApp extends StatelessWidget {
                     )
                   ],
                 ),
-              ])),
-          const SizedBox(height: 80),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: screenSize.width / 4,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text('Close'),
+              ]),
+          Expanded(
+              child: Column(children: [
+            const SizedBox(height: 80),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: screenSize.width / 4,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text('Close'),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: screenSize.width / 4,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text('Reload'),
+                SizedBox(
+                  width: screenSize.width / 4,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text('Reload'),
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ]))
         ])));
   }
 }
