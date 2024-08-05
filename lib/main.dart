@@ -9,10 +9,80 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final screenSize = MediaQuery.of(context).size;
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: Container()),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: screenSize.width / 2,
+                  height: screenSize.width / 2,
+                  child: const Placeholder(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16, bottom: 16),
+                      child: SizedBox(
+                        width: screenSize.width / 4,
+                        child: const Text(
+                          '** ℃',
+                          style: TextStyle(
+                            color: Colors.blue,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16, bottom: 16),
+                      child: SizedBox(
+                        width: screenSize.width / 4,
+                        child: const Text(
+                          '** ℃',
+                          style: TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  const SizedBox(height: 80),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: screenSize.width / 4,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Text('Close'),
+                        ),
+                      ),
+                      SizedBox(
+                        width: screenSize.width / 4,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Text('Reload'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
