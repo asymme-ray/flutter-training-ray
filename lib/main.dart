@@ -1,15 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:yumemi_weather/yumemi_weather.dart';
 
 void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
+
+  @override
+  _MainAppState createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  String weatherCondition = 'default';
+  void weather() {
+    final yumemiWeather = YumemiWeather();
+    final newWeatherCondition = yumemiWeather.fetchSimpleWeather();
+    setState(() {
+      weatherCondition = newWeatherCondition;
+    });
+  }
+
+  String _getWeatherIcon(String condition) {
+    switch (condition) {
+      case 'sunny':
+        return 'lib/assets/sunny.svg';
+      case 'cloudy':
+        return 'lib/assets/cloudy.svg';
+      case 'rainy':
+        return 'lib/assets/rainy.svg';
+      default:
+        return 'default';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    Widget weatherIcon;
+    if (weatherCondition == 'default') {
+      weatherIcon = const Placeholder();
+    } else {
+      weatherIcon = SvgPicture.asset(
+        _getWeatherIcon(weatherCondition),
+        // fit: BoxFit.contain,
+      );
+    }
     return MaterialApp(
       home: Scaffold(
         body: Column(
@@ -23,7 +61,7 @@ class MainApp extends StatelessWidget {
                 SizedBox(
                   width: screenSize.width / 2,
                   height: screenSize.width / 2,
-                  child: const Placeholder(),
+                  child: weatherIcon,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +111,9 @@ class MainApp extends StatelessWidget {
                       SizedBox(
                         width: screenSize.width / 4,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            weather();
+                          },
                           child: const Text('Reload'),
                         ),
                       ),
