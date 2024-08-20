@@ -111,9 +111,7 @@ class _MainAppState extends State<MainApp> {
                       SizedBox(
                         width: screenSize.width / 4,
                         child: TextButton(
-                          onPressed: () {
-                            weather();
-                          },
+                          onPressed: weather,
                           child: const Text('Reload'),
                         ),
                       ),
